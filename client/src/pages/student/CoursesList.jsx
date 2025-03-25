@@ -27,7 +27,7 @@ const CoursesList = () => {
 
   return (
     <>
-      <div className="relative md:px-36 px-8 pt-10 text-left">
+      <div className="relative md:px-36 px-8 pt-10 text-left min-h-screen">
         <div className="flex md:flex-row flex-col gap-6 items-center justify-between w-full">
           <div>
             <h1 className="text-4xl font-semibold text-gray-800">
