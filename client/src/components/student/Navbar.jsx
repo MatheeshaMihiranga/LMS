@@ -8,7 +8,7 @@ import axios from "axios";
 
 const Navbar = () => {
   const isCourseListPage = location.pathname.includes("/course-list");
-  const { navigate, isEducator, backendUrl, setIsEducator, getToken } =
+  const { navigate, isEducator, backendUrl, getToken } =
     useContext(AppContext);
   const { openSignIn } = useClerk();
   const { user } = useUser();
@@ -20,14 +20,16 @@ const Navbar = () => {
         return;
       }
       const token = await getToken();
-      const { data } = await axios.get(backendUrl + "/api/educator/update-role", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axios.get(
+        backendUrl + "/api/educator/request-role",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (data.success) {
-        setIsEducator(true);
         toast.success(data.message);
       } else {
         toast.error(data.message);

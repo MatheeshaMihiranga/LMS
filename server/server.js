@@ -8,6 +8,7 @@ import { clerkMiddleware } from "@clerk/express";
 import connectCloudinary from "./configs/cloudinary.js";
 import courseRouter from "./routes/courseRoutes.js";
 import userRouter from "./routes/userRoutes.js";
+import adminRouter from "./routes/adminRouter.js";
 
 //initialize express
 const app = express();
@@ -26,6 +27,7 @@ app.post("/clerk", express.json(), clerkWebhooks);
 app.use("/api/educator", express.json(), educatorRouter);
 app.use('/api/course', express.json(), courseRouter);
 app.use('/api/user', express.json(), userRouter);
+app.use("/api/admin", express.json(), adminRouter);
 app.use("/stripe", express.raw({type: 'application/json'}), stripeWebhooks);
 
 //port

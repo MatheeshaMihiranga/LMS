@@ -4,6 +4,21 @@ import { v2 as cloudinary } from "cloudinary";
 import Purchase from "../models/Purchase.js";
 import User from "../models/User.js";
 
+//Request Eduacator Role
+export const requestEducatorRole = async (req, res) => {
+  try {
+    const userId = req.auth.userId;
+    await clerkClient.users.updateUserMetadata(userId, {
+      publicMetadata: {
+        role: "pending",
+      },
+    });
+    res.json({ success: true, message: "Your request has been sent to admin" });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
+
 // Update user role to educator
 export const updateRoleToEducator = async (req, res) => {
   try {
